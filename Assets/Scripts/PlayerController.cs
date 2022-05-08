@@ -7,14 +7,15 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rigidbody2d;
     public GameObject gameWonPanel;
+    public GameObject gameLostPanel;
     public float speed;
-    private bool isGameWon = false;
+    private bool isGameOver = false;
 
     // Update is called once per frame
     void Update()
     {
         // This statement is to stop player movement after game is won
-        if (isGameWon == true)
+        if (isGameOver == true)
         {
             return;
         }
@@ -47,6 +48,13 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Level Complete!!!"); 
             gameWonPanel.SetActive(true);
+            isGameOver = true;
+        }
+        else if (other.tag == "Enemy")
+        {
+            Debug.Log("Level Lost!!!"); 
+            gameLostPanel.SetActive(true);
+            isGameOver = true;
         }
         
     }
